@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activeaza 2FA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='2fa.css') }}">
+</head>
+<body>
+    <h1>Activare 2FA</h1>
+
+    {% if not disable %}
+        <p>Scaneaza codul de mai jos cu o aplicatie (ex. Google Authenticator) sa activezi 2FA:</p>
+        <img src="{{ url_for('static', filename='2fa_qrs/' + qr_code_path.split('/')[-1]) }}" alt="QR Code">
+        
+        <p>Introdu codul primit in aplicatie:</p>
+        <form action="{{ url_for('auth.enable_2fa') }}" method="POST">
+            <input type="text" name="2fa_code" placeholder="Enter 2FA code" required>
+            <button type="submit">Activeaza 2FA</button>
+        </form>
+
+        <form action="{{ url_for('auth.regenerate_2fa') }}" method="POST">
+            <button type="submit">Regenerare cod QR</button>
+        </form>
+    {% else %}
+        <h2>Dezactiveaza 2FA</h2>
+        <p>Introdu codul 2FA pentru a dezactiva autentificarea în doi pași:</p>
+        <form action="{{ url_for('auth.disable_2fa') }}" method="POST">
+            <input type="text" name="2fa_code" placeholder="Introdu codul 2FA " required>
+            <button type="submit">Dezactiveaza 2FA</button>
+        </form>
+    {% endif %}
+
+    <!-- Butonul de întoarcere la pagina principală -->
+    <form action="{{ url_for('main.home') }}" method="GET">
+        <button type="submit">Înapoi la pagina principală</button>
+    </form>
+</body>
+</html>

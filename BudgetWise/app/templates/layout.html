@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BudgetWise{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('main.home') }}">Acasa</a></li>
+            <li><a href="{{ url_for('main.add_expense') }}">Adauga cheltuieli</a></li>
+            
+            <!-- Afișăm butonul de register doar când nu ești logat -->
+                <li><a href="{{ url_for('auth.register') }}">Inregistrare</a></li>
+                <!-- Afișăm butonul de 2FA doar când ești logat -->
+                <li>
+                    <form method="GET" action="{{ url_for('auth.enable_2fa') }}" style="display:inline;">
+                        <button type="submit">Activeaza/Dezactiveaza 2FA</button>
+                    </form>
+                </li>
+                
+                <!-- Afișăm butonul de logout doar când ești logat -->
+                <form method="POST" action="{{ url_for('auth.logout') }}" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+                
+
+            
+            <!-- Verificăm și afișăm dacă utilizatorul este autentificat sau nu -->
+            <li>
+
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 BudgetWise - Morozan - DevSecOps </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}Adauga Cheltuieli - BudgetWise{% endblock %}
+
+{% block content %}
+<h1>Adauga cheltuieli</h1>
+<form method="POST">
+    <label for="description">Descriere</label>
+    <input type="text" id="description" name="description" placeholder="Descriere" required>
+
+    <label for="amount">Suma</label>
+    <input type="number" id="amount" step="0.01" name="amount" placeholder="Suma" required>
+
+    <label for="category">Categorie</label>
+    <select id="category" name="category" required>
+        {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="date">Data</label>
+    <input type="date" id="date" name="date" required>
+
+    <button type="submit">Adauga</button>
+</form>
+{% endblock %}

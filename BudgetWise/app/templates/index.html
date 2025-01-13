@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}Acasa - BudgetWise{% endblock %}
+
+{% block content %}
+<h1>Cheltuieli</h1>
+
+<!-- Filter by category -->
+<form method="GET" action="{{ url_for('main.home') }}">
+    <label for="category">Filtreaza dupa categorie</label>
+    <select id="category" name="category">
+        <option value="">Toate</option>
+        {% for category in categories %}
+            <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Flitreaza</button>
+</form>
+
+<!-- Switch between Table and Pie Chart -->
+<button id="tableViewBtn" onclick="toggleView('table')">Vizualizare ca tabel</button>
+<button id="pieChartViewBtn" onclick="toggleView('pieChart')">Vizualizare Pie Chart</button>
+
+<!-- Expense List (Table View) -->
+<div id="tableView" style="display:block;">
+    <h2>Lista Cheltuieli</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Descriere</th>
+                <th>Suma</th>
+                <th>Categorie</th>
+                <th>Data</th>
+                <th>Actiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.description }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.date }}</td>
+                <td>
+                    <!-- Edit Button -->
+                    <a href="{{ url_for('main.edit_expense', id=expense.id) }}">Editeaza</a>
+                    <!-- Delete Button -->
+                    <form action="{{ url_for('main.delete_expense', id=expense.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this expense?')">Sterge</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pie Chart View -->
+<div id="pieChartView" style="display:none;">
+    <h2>Cheltuieli dupa categorie</h2>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('pieChart').getContext('2d');
+    var data = {
+        labels: {{ categories | tojson }},
+        datasets: [{
+            data: [
+                {% for category in categories %}
+                    {{ expenses | selectattr('category', 'equalto', category) | map(attribute='amount') | sum }},
+                {% endfor %}
+            ],
+            backgroundColor: ['#FF5733', '#33FF57', '#3357FF', '#F0FF33', '#FF33A6', '#FF33FF']
+        }]
+    };
+
+    var pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data
+    });
+
+    // Function to toggle between Table and Pie Chart view
+    function toggleView(view) {
+        if (view === 'table') {
+            document.getElementById('tableView').style.display = 'block';
+            document.getElementById('pieChartView').style.display = 'none';
+        } else if (view === 'pieChart') {
+            document.getElementById('tableView').style.display = 'none';
+            document.getElementById('pieChartView').style.display = 'block';
+        }
+    }
+</script>
+
+{% endblock %}

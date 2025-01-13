@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Login - BudgetWise{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+
+<form method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required>
+    <label for="password">Parola</label>
+    <input type="password" name="password" id="password" required>
+    <button type="submit">Login</button>
+</form>
+
+{% if get_flashed_messages() %}
+    <ul>
+        {% for message in get_flashed_messages() %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

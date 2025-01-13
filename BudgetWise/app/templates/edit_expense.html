@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Editeaza Cheltuilei - BudgetWise{% endblock %}
+
+{% block content %}
+<h1>Editeaza </h1>
+
+<form method="POST">
+    <label for="description">Descriere</label>
+    <input type="text" id="description" name="description" value="{{ expense.description }}" required>
+
+    <label for="amount">Suma</label>
+    <input type="number" id="amount" name="amount" value="{{ expense.amount }}" required>
+
+    <label for="category">Categorie</label>
+    <select id="category" name="category">
+        {% for category in categories %}
+            <option value="{{ category }}" {% if category == expense.category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="date">Sata</label>
+    <input type="date" id="date" name="date" value="{{ expense.date }}" required>
+
+    <button type="submit">Salveaza modificarile</button>
+</form>
+
+{% endblock %}

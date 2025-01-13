@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Înregistrare reușită</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .container h1 {
+            color: #28a745;
+        }
+        .qr-code {
+            margin: 20px 0;
+        }
+        .qr-code img {
+            max-width: 200px;
+            height: auto;
+        }
+        .instruction {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Înregistrare reușită!</h1>
+        <p>Contul tău a fost creat cu succes. Activează autentificarea în 2 pași (2FA) folosind următorul cod QR.</p>
+
+        <div class="qr-code">
+            <!-- Imaginea QR este încărcată din folderul static -->
+            <img src="{{ url_for('static', filename=qr_code_path) }}" alt="Cod QR 2FA">
+        </div>
+
+        <p class="instruction">Scanează acest cod QR folosind aplicația de autentificare, cum ar fi Google Authenticator sau Authy.</p>
+
+        <a href="/" class="back-button">Înapoi la pagina principală</a>
+    </div>
+
+</body>
+</html>

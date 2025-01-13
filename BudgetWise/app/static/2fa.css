@@ -1,0 +1,95 @@
+/* Stiluri generale pentru corpul paginii */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Stiluri pentru titlu */
+h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Stiluri pentru paragrafe */
+p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Stiluri pentru imaginea QR */
+img {
+    display: block;
+    margin: 20px auto;
+    width: 200px; /* Poți ajusta lățimea imaginei */
+    height: 200px;
+}
+
+/* Stiluri pentru formulare */
+form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Stiluri pentru câmpurile de input */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Stiluri pentru butoane */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Stiluri pentru butonul de regenerare QR */
+form button[type="submit"]:nth-child(2) {
+    background-color: #ff5722;
+}
+
+form button[type="submit"]:nth-child(2):hover {
+    background-color: #e64a19;
+}
+
+/* Stiluri pentru mesajele flash */
+.flash-message {
+    color: white;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 20px;
+}

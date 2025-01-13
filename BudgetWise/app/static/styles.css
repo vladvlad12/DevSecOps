@@ -1,0 +1,161 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f9fafb;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+/* Header */
+header {
+    background-color: #0077cc;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header li {
+    padding: 0;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: #ffcc00;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+table thead {
+    background-color: #0077cc;
+    color: white;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #eaf5ff;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form button {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+form input:focus {
+    border-color: #0077cc;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.5);
+}
+
+form button {
+    background-color: #0077cc;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #005fa3;
+}
+
+/* Flash Messages */
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.flashes li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flashes .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    font-size: 0.9em;
+    color: #777;
+}
+
+footer p {
+    margin: 0;
+}
