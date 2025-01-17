@@ -46,13 +46,11 @@ class Expense(db.Model):
 
 class ExpensePermission(db.Model):
     __tablename__ = 'expense_permission'
-    
     id = db.Column(db.Integer, primary_key=True)
     expense_id = db.Column(db.Integer, db.ForeignKey('expense.id'), nullable=False)  # Referință la Expense
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # Referință la User
     permission_type = db.Column(db.String(50), nullable=False)  # Tipul permisiunii: 'viewer' sau 'editor'
     
-    # backref diferit pentru a evita conflictul
     expense = db.relationship('Expense', backref='related_permissions', lazy=True)  # Nume diferit pentru backref
     user = db.relationship('User', backref='permissions', lazy=True)
 

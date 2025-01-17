@@ -1,0 +1,36 @@
+stages:
+  - install
+  - deploy
+
+# Etapa de instalare a dependențelor
+install_dependencies:
+  image: python:3.9  # Folosim o imagine Docker cu Python
+  stage: install
+  before_script:
+    - pip install --upgrade pip  # Asigură-te că ai ultima versiune de pip
+    - pip install -r requirements.txt  # Instalează dependențele din requirements.txt
+  script:
+    - echo "Dependențele au fost instalate."
+
+# Etapa de deploy pe un mediu de staging
+deploy_staging:
+  image: python:3.9
+  stage: deploy
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt  # Instalează dependențele
+    - python run.py  # Rulează aplicația pe serverul de staging
+  only:
+    - develop  # Se rulează doar pe ramura 'develop' (sau ramura de testare/staging)
+
+# Etapa de deploy în producție
+deploy_production:
+  image: python:3.9
+  stage: deploy
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt  # Instalează dependențele
+    - python run.py  # Rulează aplicația pe serverul de producție
+  only:
+    - main  # Se rulează doar pe ramura 'main' (pentru producție)
+  when: manual  # Se rulează manual, pentru a controla când face deploy în producție
